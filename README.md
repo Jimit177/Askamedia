@@ -2,6 +2,14 @@
 
 Askamedia is academic chatbot designed to answer questions based solely on Course PDF documents. It is ideal for students, educators, and researchers who want a smart assistant trained on their custom content — without using cloud APIs or pre-trained black-box LLMs.
 
+## Group members:
+1.	Ankit Soni  
+2.	Dhruv Chaudhary 
+3.	Jay Sindhal 
+4.	Jimit Jain 
+5.	Vishal Shah
+
+
 ## 🎯 Key Features
 
 - 📄 PDF-based Q&A: Ask questions from the content of your course.
