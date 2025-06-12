@@ -22,7 +22,7 @@ Askamedia is academic chatbot designed to answer questions based solely on Cours
 
 - **Language:** Python 3.11+
 - **Libraries:** PyPDF2, Transformers, SentencePiece, FAISS
-- **Model:** Custom fine-tuned LLM on your uploaded data 
+- **Model:** fine-tuned LLM
   
 ## 📁 Project Structure
 
