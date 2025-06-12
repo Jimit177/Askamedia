@@ -17,13 +17,14 @@ Askamedia is academic chatbot designed to answer questions based solely on Cours
 - **Model:** Custom fine-tuned LLM on your uploaded data 
   
 Askamedia/
-├── Dev/                    ← Main chatbot with RAG pipeline
-├── Model/                  ← Lightweight LLM model 
-├── data/                   ← Dataset
-├── Docx/                   ← Course files 
-├── requirements.txt        ← All dependencies
-├── .gitignore              ← Ignored files
-└── README.md               ← Project documentation
+├── Dev/               ← Main chatbot with RAG pipeline (askamedia.py)
+├── Model/             ← Lightweight LLM model (custom or fine-tuned)
+├── data/              ← Dataset PDFs for Q&A
+├── Docx/              ← Course documents
+├── requirements.txt   ← All dependencies
+├── .gitignore         ← Git ignore rules (e.g., venv/, __pycache__/)
+└── README.md          ← Project documentation
+
 
 ---
 
