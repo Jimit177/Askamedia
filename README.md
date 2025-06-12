@@ -16,14 +16,19 @@ Askamedia is academic chatbot designed to answer questions based solely on Cours
 - **Libraries:** PyPDF2, Transformers, SentencePiece, FAISS
 - **Model:** Custom fine-tuned LLM on your uploaded data 
   
+## 📁 Project Structure
+
+```
 Askamedia/
-├── Dev/               ← Main chatbot with RAG pipeline (askamedia.py)
-├── Model/             ← Lightweight LLM model (custom or fine-tuned)
+├── Dev/               ← Main chatbot with RAG pipeline
+├── Model/             ← Lightweight LLM model 
 ├── data/              ← Dataset PDFs for Q&A
-├── Docx/              ← Course documents
+├── Docx/              ← Course document
 ├── requirements.txt   ← All dependencies
-├── .gitignore         ← Git ignore rules (e.g., venv/, __pycache__/)
+├── .gitignore         ← Git ignore rules 
 └── README.md          ← Project documentation
+```
+
 
 
 ---
