@@ -3,7 +3,7 @@ from transformers import T5Tokenizer, T5ForConditionalGeneration, Trainer, Train
 from datasets import load_dataset
 
 # Load dataset
-dataset = load_dataset("json", data_files="../data/flan_finetune_local_qa_200.jsonl", split="train")
+dataset = load_dataset("json", data_files="../data/fine_tune_dataset_500.jsonl", split="train")
 
 # Model and tokenizer
 model_name = "google/flan-t5-small"
