@@ -1,6 +1,6 @@
 # Welcome to Askamedia 📚🤖
 
-Askamedia is academic chatbot designed to answer questions based solely on Course PDF documents. It is ideal for students, educators, and researchers who want a smart assistant trained on their custom content — without using cloud APIs or pre-trained black-box LLMs.
+Askamedia is academic chatbot designed to answer questions based solely on Course PDF documents. It is ideal for students, educators, and researchers who want a smart assistant trained on their custom content — without using cloud APIs o pre-trained black-box LLMs.
 
 ## Group members:
 1.	Ankit Soni  
@@ -8,6 +8,7 @@ Askamedia is academic chatbot designed to answer questions based solely on Cours
 3.	Jay Sindhal 
 4.	Jimit Jain 
 5.	Vishal Shah
+
 
 ## 🎯 Key Features
 
@@ -19,9 +20,8 @@ Askamedia is academic chatbot designed to answer questions based solely on Cours
 
 ## 🛠️ Tech Stack
 
-- **Language:** Python 3.11+
-- **Libraries:** PyPDF2, Transformers, SentencePiece, FAISS
-- **Model:** fine-tuned LLM
+- **Language:** Python 3.10
+- **Model:** LLama
   
 ## 📁 Project Structure
 
@@ -49,10 +49,12 @@ cd Askamedia
 
 # (Optional) Create a virtual environment
 python -m venv venv
-venv\Scripts\activate        # On Windows
-
+venv\Scripts\activate      # On Windows
+Again install llama-cpp  with
+pip install llama-cpp-python seperately
 # Install dependencies
 pip install -r requirements.txt
 
+# Run the model_download.py to download the model locally 
 # Run the chatbot
-python Dev/askamedia.py
+python Dev/app.py
