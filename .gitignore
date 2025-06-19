@@ -193,5 +193,4 @@ cython_debug/
 .cursorignore
 .cursorindexingignore
 # Ignore fine-tuned model files
-Model/flan_t5_finetuned_model/
-flan_t5_finetuned_model
+Model/
