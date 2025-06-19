@@ -1,68 +1,72 @@
 import streamlit as st
 from chat_engine import load_models, get_response
-from retriever import load_faiss_index
-from pdf_utils import extract_text
-import os
 
 # ---------------------------
-# Set Page Config
+# Page Setup
 # ---------------------------
 st.set_page_config(page_title="Askamedia", page_icon="📘", layout="wide")
 
 # ---------------------------
-# Initialize session state
+# Session State Initialization
 # ---------------------------
+if "page" not in st.session_state:
+    st.session_state.page = "login"
+if "logged_in" not in st.session_state:
+    st.session_state.logged_in = False
+if "selected_course" not in st.session_state:
+    st.session_state.selected_course = None
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
-
-# ---------------------------
-# Load models
-# ---------------------------
 if "embedder" not in st.session_state or "qa_model" not in st.session_state:
     with st.spinner("🔄 Loading models..."):
         embedder, qa_model = load_models()
         st.session_state.embedder = embedder
         st.session_state.qa_model = qa_model
-else:
-    embedder = st.session_state.embedder
-    qa_model = st.session_state.qa_model
 
 # ---------------------------
-# Sidebar
+# Page 1: Login
 # ---------------------------
-with st.sidebar:
-    st.image("../Docs/logo.png", width=180)
-    st.title("Askamedia 📘")
-    st.markdown("Smarter learning starts here. Ask anything from your course PDF.")
+if st.session_state.page == "login":
+    st.title("🔐 Askamedia Login")
+    email = st.text_input("Email")
+    password = st.text_input("Password", type="password")
+    if st.button("Login"):
+        if email and password:  # Dummy check
+            st.session_state.logged_in = True
+            st.session_state.page = "course"
+        else:
+            st.warning("Please enter both email and password.")
 
-    uploaded_file = st.file_uploader("Upload a new PDF (optional)", type=["pdf"])
-    if uploaded_file:
-        with open("Docs/Week_1_merged.pdf", "wb") as f:
-            f.write(uploaded_file.read())
-        st.success("✅ PDF uploaded. Please re-run the FAISS index build script.")
+# ---------------------------
+# Page 2: Course Selection
+# ---------------------------
+elif st.session_state.page == "course":
+    st.title("📘 Select Your Course")
+    course = st.selectbox("Choose a course to continue:", ["Artificial Intelligence,Algorithms and Mathematics"])
+    if st.button("Continue"):
+        st.session_state.selected_course = course
+        st.session_state.page = "chat"
 
-    if st.button("Clear Chat"):
+# ---------------------------
+# Page 3: Chatbot
+# ---------------------------
+elif st.session_state.page == "chat":
+    st.markdown(f"<h2 style='text-align: center;'>🤖 Askamedia – {st.session_state.selected_course}</h2>", unsafe_allow_html=True)
+    query = st.text_input("Ask your question here:")
+    if query:
+        with st.spinner("🤔 Thinking..."):
+            try:
+                answer = get_response(query, st.session_state.embedder, st.session_state.qa_model, score_threshold=0.75)
+            except Exception as e:
+                answer = f"⚠️ Error: {str(e)}"
+        st.session_state.chat_history.append({"user": query, "bot": answer})
+
+    for chat in reversed(st.session_state.chat_history):
+        st.markdown(f"**🧑‍🎓 You:** {chat['user']}")
+        st.markdown(f"**🤖 Askamedia:** {chat['bot']}")
+
+    if st.button("🧹 Clear Chat"):
         st.session_state.chat_history = []
 
-# ---------------------------
-# Main Chat Interface
-# ---------------------------
-st.markdown("<h2 style='text-align: center;'>Askamedia: Your Course Companion 🤖</h2>", unsafe_allow_html=True)
-
-query = st.text_input("Ask your question here:")
-
-if query:
-    with st.spinner("🤔 Thinking..."):
-        try:
-            answer = get_response(query, embedder, qa_model, score_threshold=0.75)
-        except Exception as e:
-            answer = f"⚠️ Error: {str(e)}"
-
-    st.session_state.chat_history.append({"user": query, "bot": answer})
-
-# ---------------------------
-# Chat History Display
-# ---------------------------
-for chat in reversed(st.session_state.chat_history):
-    st.markdown(f"**🧑‍🎓 You:** {chat['user']}")
-    st.markdown(f"**🤖 Askamedia:** {chat['bot']}")
+    if st.button("🔙 Back to Course Selection"):
+        st.session_state.page = "course"
