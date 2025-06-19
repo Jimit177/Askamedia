@@ -9,7 +9,6 @@ Askamedia is academic chatbot designed to answer questions based solely on Cours
 4.	Jimit Jain 
 5.	Vishal Shah
 
-
 ## 🎯 Key Features
 
 - 📄 PDF-based Q&A: Ask questions from the content of your course.
