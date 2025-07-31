@@ -193,4 +193,4 @@ cython_debug/
 .cursorignore
 .cursorindexingignore
 # Ignore fine-tuned model files
-Model/
+backend/models
