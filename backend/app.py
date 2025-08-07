@@ -171,11 +171,9 @@ def get_overlap_score(text, query):
 from llama_cpp import Llama
 
 # Initialize LLM once globally
-llm = Llama(
-    model_path=os.path.abspath("models/tinyllama-1.1b-chat-v1.0.Q8_0.gguf"),
-    n_ctx=2048,
-    n_threads=4  # Adjust if needed
-)
+model_path = os.path.join(os.path.dirname(__file__), "models", "tinyllama-1.1b-chat-v1.0.Q8_0.gguf")
+llm = Llama(model_path=model_path, n_ctx=2048, n_threads=4)
+
 
 def rewrite_with_local_llm(content, query, mode="rewrite"):
     if mode == "rewrite":
