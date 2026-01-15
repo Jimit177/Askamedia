@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Askamedia Chatbot</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="script.js"></script>
+  <style>
+    .course-status {
+      text-align: center;
+      background: #e3f2fd;
+      color: #0d47a1;
+      padding: 12px 20px;
+      border-radius: 12px;
+      margin: 12px auto;
+      max-width: 600px;
+      font-weight: 500;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+    .thinking {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #106cc0;
+      margin-right: 4px;
+      animation: bounce 1.2s infinite ease-in-out both;
+    }
+    .thinking:nth-child(2) { animation-delay: 0.2s; }
+    .thinking:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes bounce {
+      0%, 80%, 100% { transform: scale(0); }
+      40% { transform: scale(1); }
+    }
+    .back-to-course {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      font-size: 0.9rem;
+      text-decoration: none;
+      color: #106cc0;
+      background: #e3f2fd;
+      padding: 6px 10px;
+      border-radius: 8px;
+    }
+    .back-to-course:hover {
+      background: #d0e9ff;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <a href="course_selection.html" class="back-to-course">← Back to Courses</a>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2 class="logo">📚 Askamedia</h2>
+      <nav class="menu">
+        <button class="menu-item active">Chat</button>
+        <button class="menu-item">Course Materials</button>
+        <button class="menu-item">Settings</button>
+        <button class="menu-item logout" onclick="logout()">Logout</button>
+      </nav>
+      <div class="chat-history"></div>
+    </aside>
+
+    <!-- Chat Section -->
+    <main class="chat-main">
+      <div class="chat-header">
+        <img src="assets/avatar.png" alt="Bot Avatar" class="bot-avatar" />
+        <h3>Askamedia Assistant</h3>
+      </div>
+
+      <div id="course-status" class="course-status" style="display:none;"></div>
+
+      <!-- Chat Window -->
+      <div class="chat-window" id="chat-window"></div>
+
+      <!-- Chat Input -->
+      <div class="chat-input">
+        <button id="new-chat-btn" title="New Chat">+</button>
+        <input type="text" id="user-input" placeholder="Ask a question..." autocomplete="off" />
+        <button id="mic-btn" title="Voice Input">🎤</button>
+        <button id="send-btn" title="Send">Send</button>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    function logout() {
+      localStorage.clear();
+      window.location.href = "home.html";
+    }
+  </script>
+</body>
+</html>

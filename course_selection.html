@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Select a Course | Askamedia</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #edf5ff, #ffffff);
+    color: #16213e;
+  }
+  header {
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  }
+  header a {
+    color: #16213e;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  .container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: auto;
+  }
+  h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: #16213e;
+  }
+  #welcome {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    color: #106cc0;
+  }
+  .course-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .course-card {
+    background: #ffffff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    animation: fadeInUp 0.5s ease forwards;
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  .course-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.15);
+  }
+  .course-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+  .course-content {
+    padding: 1rem 1.2rem;
+  }
+  .course-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0.5rem 0;
+  }
+  .course-desc {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 1rem;
+  }
+  .course-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: #888;
+  }
+  .badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    padding: 4px 10px;
+    background: #106cc0;
+    color: white;
+    border-radius: 12px;
+    margin-bottom: 0.5rem;
+  }
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @media (max-width: 768px) {
+    header {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+</style>
+</head>
+<body>
+<script>
+  if (!localStorage.getItem('loggedIn')) {
+    window.location.href = 'home.html';
+  }
+  const userName = localStorage.getItem('userName') || 'Student';
+  console.log('[👤] Logged in user:', userName);
+</script>
+<header>
+  <a href="home.html">← Back to Home</a>
+  <span style="font-weight: 600; font-size: 1.2rem;">Course Selection</span>
+</header>
+<div class="container">
+  <h2>Select a Course to Begin</h2>
+  <p id="welcome">Welcome, <strong id="display-name">...</strong>!</p>
+  <div class="course-grid">
+    <a href="index.html?course=hacking" class="course-card">
+      <img src="./test.jpg" alt="Ethical Hacking Thumbnail" />
+      <div class="course-content">
+        <div class="badge" style="background:#e67e22;">Expert</div>
+        <div class="course-title">Ethical Hacking and Penetration Testing Guide</div>
+        <div class="course-desc">Explore network vulnerabilities and master ethical hacking tools and techniques.</div>
+        <div class="course-meta">
+          <span>10 Videos</span>
+          <span>2h 20min</span>
+        </div>
+      </div>
+    </a>
+    <a href="index.html?course=prml" class="course-card">
+      <img src="./test.jpg" alt="PRML Thumbnail" />
+      <div class="course-content">
+        <div class="badge" style="background:#3498db;">Intermediate</div>
+        <div class="course-title">Pattern Recognition and Machine Learning</div>
+        <div class="course-desc">Dive deep into supervised and unsupervised learning, classification, and clustering.</div>
+        <div class="course-meta">
+          <span>9 Videos</span>
+          <span>2h 05min</span>
+        </div>
+      </div>
+    </a>
+    <a href="index.html?course=llm" class="course-card">
+      <img src="./test.jpg" alt="LLM Thumbnail" />
+      <div class="course-content">
+        <div class="badge" style="background:#9b59b6;">Advanced</div>
+        <div class="course-title">Foundations of LLMs</div>
+        <div class="course-desc">Understand the architecture and training of large language models like GPT.</div>
+        <div class="course-meta">
+          <span>8 Videos</span>
+          <span>1h 55min</span>
+        </div>
+      </div>
+    </a>
+    <a href="index.html?course=mltheory" class="course-card">
+      <img src="./test.jpg" alt="UML Thumbnail" />
+      <div class="course-content">
+        <div class="badge" style="background:#00c6a9;">Beginner</div>
+        <div class="course-title">Understanding Machine Learning: Theory & Algorithms</div>
+        <div class="course-desc">A beginner-friendly introduction to core ML concepts, models, and optimization methods.</div>
+        <div class="course-meta">
+          <span>11 Videos</span>
+          <span>2h 30min</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+<script>
+  document.getElementById('display-name').innerText = userName;
+</script>
+</body>
+</html>
